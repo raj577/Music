@@ -23,6 +23,7 @@ const app = () => {
     checkPlaying(song);
   });
 
+  //Select
   const checkPlaying = song => {
     if (song.paused) {
       song.play();
@@ -33,6 +34,23 @@ const app = () => {
       video.pause();
       play.src = "./svg/play.svg";
     }
+  };
+
+  //animating the circle
+  song.ontimeupdate = () => {
+    let currentTime = song.currentTime;
+    let elapsedTime = song.getTotalLength - currentTime;
+    let seconds = Math.floor(currentTime);
+    let minutes = Math.floor(elapsedTime);
+// let seconds = 9;
+// let minutes = 6;
+    //Animate the circle
+    // let progress = outlineLength - (currentTime / fakeDuration) * outlineLength;
+    // outline.style.strokeDashoffset = progress;
+
+    //Animate the text
+    // timeDisplay.textContent = '${minutes}:${seconds}';
+    timeDisplay.textContent = `${currentTime}:${seconds}`;
   };
 };
 
